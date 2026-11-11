@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Noun & Adverb Clause Practice</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{--bg:#eef1f4;--card:#fff;--ink:#151a22;--muted:#4f5867;--line:#d6dbe3;--soft:#f4f6f9;--accent:#2445c4;--accent-ink:#fff;--mark:#ffd84a;--mark-ink:#151a22;--good:#1b7a45;--good-bg:#e3f4ea;--bad:#b4261c;--bad-bg:#fbe7e5;--warn-bg:#fff4d1;--warn:#7a5200;--head:#1f4e63;--head-ink:#fff;--hero:#dfe9f3;
+--display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;--body:"Source Sans 3","Segoe UI",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151b;--card:#1c2029;--ink:#eef1f6;--muted:#a9b1bf;--line:#353b48;--soft:#242935;--accent:#8fa6ff;--accent-ink:#0d1120;--good:#6fd39a;--good-bg:#173323;--bad:#ff8f84;--bad-bg:#3a1c1a;--warn-bg:#3a2f12;--warn:#ffd77a;--head:#8fc3d9;--head-ink:#0d1a20;--hero:#1f2a36;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12151b;--card:#1c2029;--ink:#eef1f6;--muted:#a9b1bf;--line:#353b48;--soft:#242935;--accent:#8fa6ff;--accent-ink:#0d1120;--good:#6fd39a;--good-bg:#173323;--bad:#ff8f84;--bad-bg:#3a1c1a;--warn-bg:#3a2f12;--warn:#ffd77a;--head:#8fc3d9;--head-ink:#0d1a20;--hero:#1f2a36;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 var(--body);-webkit-text-size-adjust:100%}
+.hidden{display:none!important}
+h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0}
+.wrap{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px}
+.eyebrow{font:600 12px var(--body);text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:6px}
+.muted{color:var(--muted)}
+label.f{display:block;font-weight:600;margin:14px 0 4px}
+input.t{width:100%;font:inherit;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+input.t:focus{outline:2px solid var(--accent);outline-offset:1px}
+.btn{font:700 16px var(--body);border-radius:999px;padding:11px 22px;cursor:pointer;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);min-height:44px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn:focus-visible,.num:focus-visible,.opt:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
+.linkbtn{background:none;border:0;color:var(--muted);text-decoration:underline;font:inherit;font-size:.9rem;cursor:pointer;padding:8px 0}
+.err{color:var(--bad);font-weight:600;min-height:1.4em;margin:8px 0 0}
+.rules{background:var(--warn-bg);border-radius:12px;padding:12px 16px;margin:18px 0 6px}
+.rules b{color:var(--warn)}
+.rules ul{margin:6px 0 0;padding-left:20px}
+/* student: top bar + grid */
+.sbar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);margin-bottom:14px}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-weight:600;font-size:.9rem}
+.chip.warn{background:var(--warn-bg);color:var(--warn)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.num{font:700 18px var(--mono);aspect-ratio:1;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.num.done{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.num.open{border-color:var(--accent);color:var(--accent)}
+.num.locked{background:var(--soft);color:var(--muted);text-decoration:line-through;cursor:not-allowed}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.85rem;color:var(--muted);margin:12px 0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;border:1.5px solid var(--line);vertical-align:-1px;margin-right:4px}
+/* student: question */
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.qhead h2{font-size:1.6rem}
+.clock{font:700 1.5rem var(--mono)}
+.clock.low{color:var(--bad)}
+.tbar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:14px}
+.tbar i{display:block;height:100%;background:var(--accent);width:100%;transition:width 1s linear}
+.hint{font-size:.9rem;color:var(--muted);margin:0 0 10px}
+.opts{display:flex;flex-direction:column;gap:10px;user-select:none;-webkit-user-select:none}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;font:inherit;font-size:1.02rem;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;min-height:52px}
+.opt .l{font:700 1rem var(--mono);color:var(--accent);min-width:1.4em}
+.opt .bl{display:block}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.saved{font-weight:700;color:var(--good);min-height:1.5em;margin:10px 0 0}
+/* modal & toast */
+.overlay{position:fixed;inset:0;background:rgba(10,12,18,.72);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal{background:var(--card);color:var(--ink);border-radius:16px;max-width:440px;width:100%;padding:22px 20px;border:2px solid var(--line)}
+.modal.danger{border-color:var(--bad)} .modal.caution{border-color:var(--mark)}
+.modal h2{font-size:1.3rem;margin-bottom:8px}
+.modal .acts{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:999px;font-weight:600;z-index:60;font-size:.92rem;max-width:calc(100% - 32px);text-align:center}
+/* results (inspired by the reading-practice end page) */
+.hero{background:var(--hero);border-radius:22px;padding:22px 22px 24px;margin-bottom:18px}
+.hero h1{font-size:clamp(1.7rem,7vw,2.3rem);font-weight:800;margin-bottom:8px}
+.hero .meta{display:flex;flex-direction:column;gap:4px;font-size:1.05rem;margin-bottom:16px}
+.hero .meta b{font-weight:700}
+.scorepill{display:inline-flex;align-items:baseline;gap:6px;background:var(--head);color:var(--head-ink);border-radius:999px;padding:12px 30px}
+.scorepill b{font:800 2.4rem var(--display)}
+.scorepill span{font-size:1.1rem;opacity:.9}
+.flag{margin-top:14px;padding:8px 12px;border-radius:10px;background:var(--bad-bg);color:var(--bad);font-weight:600}
+.flag.ok{background:var(--good-bg);color:var(--good)}
+.ri{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px}
+.ri.c{border-left-color:var(--good)} .ri.w{border-left-color:var(--bad)}
+.ri .qq{display:flex;gap:10px;font-weight:600}
+.ri .qq .n{color:var(--accent);font-family:var(--mono)}
+.ri .ya{margin:8px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:.98rem}
+.ri .ya span:first-child{color:var(--muted)}
+.ri .ya b{white-space:pre-line}
+.badge{display:inline-block;margin-top:8px;border-radius:999px;padding:2px 12px;font-weight:700;font-size:.88rem}
+.badge.c{background:var(--good-bg);color:var(--good)} .badge.w{background:var(--bad-bg);color:var(--bad)}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+.filters button{font:600 14px var(--body);border:1.5px solid var(--ink);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+@media print{.sbar,.filters,.noprint{display:none!important}body{background:#fff;color:#000}.ri{break-inside:avoid}}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:14px}
+.qcard .qt{font-weight:600;margin-bottom:10px;display:flex;gap:8px}
+.qcard .qt .n{color:var(--accent);font-family:var(--mono)}
+.ropt{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;margin-top:8px;cursor:pointer;user-select:none;-webkit-user-select:none}
+.ropt:hover{border-color:var(--accent)}
+.ropt input{margin-top:5px;accent-color:var(--accent);width:18px;height:18px;flex:none}
+.ropt:has(input:checked){border-color:var(--accent);background:var(--soft)}
+.ropt .l{font:700 1rem var(--mono);color:var(--accent);min-width:1.3em}
+.ropt:focus-within{outline:3px solid var(--mark);outline-offset:2px}
+.chip.timer{font-family:var(--mono)}
+.chip.low{background:var(--bad-bg);color:var(--bad);border-color:var(--bad)}
+.progress{height:6px;background:var(--line);border-radius:99px;overflow:hidden;flex-basis:100%}
+.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+.qcard legend{float:left;width:100%;padding:0}
+.qcard legend+*{clear:both}
+</style>
+</head>
+<body>
+
+<!-- START -->
+<div class="wrap" id="startScreen">
+ <div class="card">
+  <div class="eyebrow">Grammar practice</div>
+  <h1 style="font-size:clamp(1.7rem,6vw,2.2rem);font-weight:800;margin-bottom:6px">📝 Noun &amp; Adverb Clauses</h1>
+  <p class="muted" style="margin:0">30 multiple-choice questions · 30 minutes</p>
+  <label class="f" for="fullName">Full name</label>
+  <input class="t" id="fullName" autocomplete="off" placeholder="e.g., Nathaliza Laura Pramesty">
+  <label class="f" for="studentNo">Student number</label>
+  <input class="t" id="studentNo" autocomplete="off" inputmode="numeric" placeholder="e.g., 2405123">
+  <label class="f" for="program">Study program</label>
+  <input class="t" id="program" autocomplete="off" placeholder="e.g., English Literature">
+  <div class="rules"><b>⚠ Anti-cheating rules</b>
+   <ul>
+    <li>Stay on this page until you submit: no other tabs or apps, no split screen, no notifications. Keep your screen on.</li>
+    <li>Each time you leave, the answer options are shuffled again. You get <b>2 warnings</b>; the <b>3rd</b> time, your test is submitted automatically.</li>
+    <li>Copying and right-clicking are disabled. When the time runs out, your test is submitted automatically.</li>
+   </ul></div>
+  <p class="err" id="startErr" role="alert"></p>
+  <button class="btn primary" id="startBtn" type="button">Start test →</button>
+ </div>
+</div>
+
+<!-- TEST -->
+<div class="wrap hidden" id="testScreen">
+ <div class="sbar">
+  <span class="chip" id="sWho"></span>
+  <span class="chip timer" id="timer">30:00</span>
+  <span class="chip" id="sCount">0 / 30 answered</span>
+  <span class="chip" id="sWarn">Warnings: 0 / 2</span>
+  <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+ </div>
+ <div id="qList"></div>
+ <div style="display:flex;justify-content:flex-end;margin-top:8px"><button class="btn primary" id="submitBtn" type="button">Submit test ✓</button></div>
+</div>
+
+<!-- RESULTS -->
+<div class="wrap hidden" id="resultScreen">
+ <div class="hero">
+  <h1 id="rName"></h1>
+  <div class="meta" id="rMeta"></div>
+  <div class="scorepill"><b id="rScore"></b><span id="rTotal"></span></div>
+  <div id="rFlag"></div>
+ </div>
+ <p class="muted" style="margin:0 0 12px">Shows only whether each answer is correct. The answer key is not shown.</p>
+ <div class="filters" role="group" aria-label="Filter results">
+  <button type="button" data-f="all" aria-pressed="true">All</button>
+  <button type="button" data-f="c" aria-pressed="false">Correct</button>
+  <button type="button" data-f="w" aria-pressed="false">Incorrect / unanswered</button>
+ </div>
+ <div id="rList"></div>
+</div>
+<div id="modalRoot"></div>
+
+<script>
+(function(){
+"use strict";
+var DATA=[{"q":"Combine: “I will bring an umbrella. It might rain later.”","o":["I will bring an umbrella in case it rains later.","I will bring an umbrella in case it will rain later.","I bring it unless it rains.","I will bring an umbrella although it rains later in the afternoon."]},{"q":"Combine: “We are not sure about it. Will the library open on Sunday?”","o":["We are not sure whether will the library open on Sunday.","We are not sure if will it open.","We are not sure whether the library will open on Sunday.","We are not sure what the library will open on Sunday or not."]},{"q":"“Although the poster was colorful, nobody read it.” The clause “Although the poster was colorful” is a(n)…","o":["noun clause","adverb clause","relative clause","adjective clause"]},{"q":"Combine: “Can you tell me? Where is the nearest recycling bin?”","o":["Can you tell me where is the nearest recycling bin?","Can you tell me where the nearest recycling bin is?","Can you tell me where bin is it?","Can you tell me that where the nearest recycling bin is located?"]},{"q":"Combine: “Turn off the lights. Otherwise, they will not start the movie.”","o":["They will not start the movie unless you turn off the lights.","They will not start the movie if you turn off the lights.","They start unless lights off.","They will not start the movie unless you will turn off all of the lights."]},{"q":"“The UN adopted 17 Sustainable Development Goals in 2015. ______. For this reason, many schools now teach students about sustainability.”","o":["Experts believe what education is key to reaching these goals.","Experts believe that education is key to reaching these goals.","Experts believe that education are key.","Experts believe education that is key to reaching all of these goals."]},{"q":"“Researchers asked 200 students about their study habits. ______. The results showed that most of them study late at night.”","o":["They wanted to find out when students usually study.","They wanted to find out when do students usually study.","They wanted to know when students studies.","They wanted to find out that when students usually study during the week."]},{"q":"“The school garden needs water every day. ______. Therefore, we made a watering schedule.”","o":["The plants will die if someone waters them regularly.","The plants die although watered.","The plants will die unless someone waters them regularly.","The plants will die unless someone doesn’t water them regularly every day."]},{"q":"Combine: “We can go home now. The class has finished.”","o":["We can go home now although the class has finished.","We can go home now because the class has finished.","We go home unless class finished.","We can go home now because of the class has finished for today."]},{"q":"Combine: “Nobody knows it. How did the cat get into the classroom?”","o":["Nobody knows how the cat got into the classroom.","Nobody knows how did the cat get into the classroom.","Nobody knows how cat get in.","Nobody knows that how the cat got into the classroom last night."]},{"q":"“Whether we win or lose does not matter.” The clause “Whether we win or lose” is a(n)…","o":["noun clause","adverb clause","relative clause","adjective clause"]},{"q":"“If he comes, we will start the meeting.” The clause “If he comes” is a(n)…","o":["noun clause","relative clause","adjective clause","adverb clause"]},{"q":"Combine: “The store opened when I was 10 years old. It has been open ever since.”","o":["The store has been open since I was 10 years old.","The store has been open since I am 10 years old.","The store opened because I was 10.","The store has been open until I was 10 years old and still now."]},{"q":"Combine: “Hard work pays off. Everyone knows it.”","o":["Everyone knows what hard work pays off.","Everyone knows hard work that pays off it.","Everyone knows that hard work pays off.","Knows everyone that hard work."]},{"q":"“Our group finished the campaign poster on Friday. ______. On Monday, many students stopped to read it.”","o":["As soon as we will finish it, we put it up in the hallway.","Unless we finished it, we put it up.","Although we finished it, we put it up in the hallway near the main entrance.","As soon as we finished it, we put it up in the hallway."]},{"q":"Combine: “I don’t understand it. Why did he leave early?”","o":["I don’t understand why did he leave early.","I don’t understand why he left early.","I don’t understand why he leave.","I don’t understand that why he left early yesterday."]},{"q":"“Our canteen stopped selling bottled water last month. ______. Now, each floor has a refill station.”","o":["Since students could no longer buy water, they brought their own bottles.","Although students could no longer buy water, they brought their own bottles.","Unless students could buy water, they brought bottles.","Because of students could no longer buy water, they started bringing their own bottles."]},{"q":"“I wonder when the bus will come.” The clause “when the bus will come” is a(n)…","o":["adverb clause","relative clause","adjective clause","noun clause"]},{"q":"Combine: “I will call you. I arrive at the station.” (the call happens right at that moment)","o":["I will call you as soon as I will arrive at the station.","I will call you unless I arrive.","I will call you although I arrive at the station in the evening.","I will call you as soon as I arrive at the station."]},{"q":"Combine: “I wonder about it. Does she still live in Bandung?”","o":["I wonder if does she still live in Bandung.","I wonder if she still lives in Bandung.","I wonder if she live there.","I wonder what she still lives in Bandung with her family."]},{"q":"“The problem is that nobody reads the instructions.” The clause “that nobody reads the instructions” is a(n)…","o":["adverb clause","relative clause","noun clause","adjective clause"]},{"q":"“I will call you when the bus comes.” The clause “when the bus comes” is a(n)…","o":["noun clause","adverb clause","relative clause","adjective clause"]},{"q":"“Solar panels are expensive to install. ______. That is why our school still plans to buy them.”","o":["Because they cost a lot, they lower electricity bills for many years.","Although costly, but they lower bills.","Unless they cost a lot, they lower the school’s electricity bills for many years.","Although they cost a lot, they lower electricity bills for years."]},{"q":"“The school garden has not been watered for a week. ______. Let’s check it after class.”","o":["I am not sure if are the plants still alive.","I am not sure if the plants are still alive.","I am not sure if plants is alive.","I am not sure that if the plants in our garden are still alive."]},{"q":"“The library is planning a book-swap day. ______. So far, only 15 students have signed up.”","o":["The event will go ahead unless at least 30 students register.","It goes ahead if 30 will register.","The event will go ahead if at least 30 students register.","The event will go ahead if at least 30 students will register for it before Friday."]},{"q":"“Our class wants to reduce plastic waste in the canteen. ______. So, we will run a short survey next week.”","o":["We do not know whether students will use refill stations.","We do not know whether will students use refill stations.","We do not know if students will to use them.","We do not know that whether students will use the new refill stations."]},{"q":"Combine: “It was raining heavily. The students still joined the beach clean-up.”","o":["Because it was raining heavily, the students joined the clean-up.","Unless it rained, they joined.","Although it was raining heavily, the students joined the clean-up.","Although it was raining heavily, but the students joined the beach clean-up."]},{"q":"“Last week, our lecturer gave us a surprising piece of advice. ______. Since then, I have read for 20 minutes every night.”","o":["What did she tell us changed my study habits.","That she told us change it.","What she told us it changed my study habits completely.","What she told us changed my study habits."]},{"q":"“The electricity went out at 10 a.m. ______. Luckily, she had saved her work.”","o":["While Rina typing her essay, the screen went black.","Because Rina typed, it went black.","While Rina was typing her essay, the screen went black.","Although Rina was typing her essay on the laptop, the screen suddenly went black."]},{"q":"“Many first-year students feel lost on campus. ______. That is why the department is making a short video tour.”","o":["They often do not know where should they go for help.","They do not know where go for help.","They often do not know that where they should go for help on campus.","They often do not know where they should go for help."]}];          // canonical option order
+var K="VCMpNAAOFuHv+cLK2KeruISUn2RyfkNQXikwOgoQ";            // scrambled key: index into canonical options
+var LIMIT=30*60, MAX_WARN=2;
+function key(i){var b=atob(K);return "abcd".indexOf(String.fromCharCode(b.charCodeAt(i)^(53+i*11)%256));}
+var $=function(id){return document.getElementById(id);};
+var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function fmt(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");}
+function show(id){["startScreen","testScreen","resultScreen"].forEach(function(x){$(x).classList.toggle("hidden",x!==id);});window.scrollTo(0,0);}
+var S={name:"",no:"",prog:"",qorder:[],oorder:{},ans:{},active:false,done:false,viol:0,lastV:0,auto:"",start:0,left:LIMIT,tick:null,baseW:0,baseH:0,orient:"",wake:null,fs:false};
+
+/* modal & toast (no alert(): it steals focus and counts as leaving on some phones) */
+var modalOpen=false;
+function modal(o){modalOpen=true;var r=$("modalRoot");
+ r.innerHTML='<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="modal '+(o.tone||'')+'"><h2 id="mt">'+o.title+'</h2><div>'+o.body+'</div><div class="acts">'+
+ (o.cancel?'<button class="btn" id="mCancel" type="button">'+o.cancel+'</button>':'')+'<button class="btn primary" id="mOk" type="button">'+(o.ok||'OK')+'</button></div></div></div>';
+ var close=function(){r.innerHTML="";modalOpen=false;};
+ $("mOk").onclick=function(){close();if(o.onOk)o.onOk();};$("mOk").focus();
+ if(o.cancel)$("mCancel").onclick=function(){close();if(o.onCancel)o.onCancel();};}
+var toastT;function toast(t){var el=document.querySelector(".toast");if(!el){el=document.createElement("div");el.className="toast";el.setAttribute("role","status");document.body.appendChild(el);}
+ el.textContent=t;el.classList.remove("hidden");clearTimeout(toastT);toastT=setTimeout(function(){el.classList.add("hidden");},2400);}
+
+/* start */
+$("startBtn").onclick=function(){
+ var n=$("fullName").value.trim(),no=$("studentNo").value.trim(),p=$("program").value.trim();
+ if(!n||!no||!p){$("startErr").textContent="Please fill in your name, student number and study program.";return;}
+ S.name=n;S.no=no;S.prog=p;
+ S.qorder=shuffle(DATA.map(function(_,i){return i;}));   // each student gets a different question order
+ newOptOrders();
+ try{if(document.documentElement.requestFullscreen&&window.matchMedia("(pointer:fine)").matches)document.documentElement.requestFullscreen().catch(function(){});}catch(e){}
+ render();$("sWho").textContent=n;show("testScreen");S.start=Date.now();S.active=true;wake();
+ setTimeout(function(){S.baseW=window.innerWidth;S.baseH=window.innerHeight;S.orient=orient();},1200);
+ S.tick=setInterval(tick,1000);tick();};
+function newOptOrders(){DATA.forEach(function(_,i){S.oorder[i]=shuffle([0,1,2,3]);});}
+function wake(){try{if(navigator.wakeLock&&S.active)navigator.wakeLock.request("screen").then(function(w){S.wake=w;}).catch(function(){});}catch(e){}}
+
+/* render: questions in this student's order; options in this student's order. Answers are stored by
+   canonical option index, so re-shuffling never changes what a student chose or how it is scored. */
+function render(){var h="";
+ S.qorder.forEach(function(qi,pos){var q=DATA[qi];
+  h+='<fieldset class="qcard"><legend class="qt"><span class="n">'+(pos+1)+'.</span><span>'+esc(q.q).replace(/______/g,"<b>______</b>")+'</span></legend>';
+  S.oorder[qi].forEach(function(k,j){h+='<label class="ropt"><input type="radio" name="q'+qi+'" value="'+k+'"'+(S.ans[qi]===k?' checked':'')+'><span class="l">'+"ABCD"[j]+'.</span><span>'+esc(q.o[k])+'</span></label>';});
+  h+='</fieldset>';});
+ $("qList").innerHTML=h;}
+$("qList").addEventListener("change",function(e){var m=(e.target.name||"").match(/^q(\d+)$/);if(!m||S.done)return;S.ans[+m[1]]=+e.target.value;count();});
+function count(){var n=Object.keys(S.ans).length;$("sCount").textContent=n+" / "+DATA.length+" answered";$("prog").style.width=(n/DATA.length*100)+"%";}
+function tick(){if(!S.active)return;S.left=Math.max(0,LIMIT-Math.floor((Date.now()-S.start)/1000));
+ $("timer").textContent=fmt(S.left);$("timer").classList.toggle("low",S.left<=300);
+ if(S.left<=0){S.auto="Time ran out";finish();modal({title:"⏰ Time’s up",body:"<p>Your test was submitted automatically.</p>",ok:"See my score"});}}
+
+/* anti-cheat */
+function orient(){try{return screen.orientation?screen.orientation.type:String(window.orientation);}catch(e){return "";}}
+function violation(reason){
+ if(!S.active||S.done)return;var now=Date.now();if(now-S.lastV<2500)return;S.lastV=now;   // blur + visibilitychange fire together: count once
+ S.viol++;var y=window.scrollY;newOptOrders();render();window.scrollTo(0,y);           // re-shuffle options, keep answers and scroll position
+ $("sWarn").textContent="Warnings: "+Math.min(S.viol,MAX_WARN)+" / "+MAX_WARN;$("sWarn").classList.add("warn");
+ if(S.viol<=MAX_WARN){var last=S.viol===MAX_WARN;
+  modal({tone:last?"danger":"caution",title:last?"⛔ Final warning (2 of 2)":"⚠ Warning (1 of 2)",
+   body:"<p>You "+reason+". The answer options have been shuffled again (your answers are kept).</p><p>Stay on this page until you submit: no other tabs or apps, no split screen, no notifications."+(last?" <b>Next time, your test will be submitted automatically.</b>":" You have one warning left.")+"</p>",ok:"Back to the test",onOk:wake});
+ }else{S.auto="Left the page "+S.viol+" times";finish();
+  modal({tone:"danger",title:"❌ Test submitted automatically",body:"<p>You left the test page a third time, so your answers were submitted.</p>",ok:"See my score"});}}
+document.addEventListener("visibilitychange",function(){if(document.hidden)violation("left the test tab or app");else wake();});
+window.addEventListener("blur",function(){setTimeout(function(){if(!document.hasFocus())violation("switched to another window, app or notification");},300);});
+window.addEventListener("resize",function(){if(!S.active||!S.baseW)return;
+ if(orient()!==S.orient){S.orient=orient();setTimeout(function(){S.baseW=window.innerWidth;S.baseH=window.innerHeight;},600);return;}
+ if(window.innerWidth<S.baseW*0.75||window.innerHeight<S.baseH*0.6)violation("made the window smaller or used split screen");});
+document.addEventListener("fullscreenchange",function(){if(document.fullscreenElement)S.fs=true;else if(S.fs&&S.active)violation("left full screen");});
+document.addEventListener("contextmenu",function(e){if(S.active){e.preventDefault();toast("Right-click is disabled during the test.");}});
+["copy","cut","paste"].forEach(function(t){document.addEventListener(t,function(e){if(S.active){e.preventDefault();toast("Copying is disabled during the test.");}});});
+document.addEventListener("keydown",function(e){if(!S.active)return;var k=(e.key||"").toLowerCase();
+ if(k==="printscreen"||k==="f12"||((e.ctrlKey||e.metaKey)&&["c","x","v","p","s","u","a","f"].indexOf(k)>-1)||((e.ctrlKey||e.metaKey)&&e.shiftKey&&["i","j","c","s"].indexOf(k)>-1)){e.preventDefault();toast("That shortcut is disabled during the test.");}});
+window.addEventListener("beforeunload",function(e){if(S.active){e.preventDefault();e.returnValue="";}});
+
+/* submit & review */
+$("submitBtn").onclick=function(){var n=Object.keys(S.ans).length;
+ modal({tone:n<DATA.length?"caution":"",title:"Submit your test?",body:"<p>You answered "+n+" of "+DATA.length+" questions."+(n<DATA.length?" Unanswered questions count as incorrect.":"")+" You can’t change your answers after submitting.</p>",ok:"Submit",cancel:"Keep working",onOk:finish});};
+function finish(){if(S.done)return;S.done=true;S.active=false;clearInterval(S.tick);
+ try{if(document.fullscreenElement)document.exitFullscreen();}catch(e){}try{if(S.wake)S.wake.release();}catch(e){}
+ var used=Math.min(LIMIT,Math.round((Date.now()-S.start)/1000)),ok=0,h="";
+ S.qorder.forEach(function(qi,pos){var q=DATA[qi],a=S.ans[qi],has=a!==undefined,right=has&&a===key(qi);if(right)ok++;
+  h+='<div class="ri '+(right?'c':'w')+'" data-r="'+(right?'c':'w')+'"><div class="qq"><span class="n">'+(pos+1)+'.</span><span>'+esc(q.q)+'</span></div>'+
+   '<div class="ya"><span>Your answer:</span><b>'+(has?esc(q.o[a]):"Not answered")+'</b></div>'+
+   '<span class="badge '+(right?'c':'w')+'">'+(right?'✓ correct':'✗ incorrect')+'</span></div>';});
+ $("rList").innerHTML=h;$("rName").textContent=S.name;
+ $("rMeta").innerHTML='<span>🎓 Student number: <b>'+esc(S.no)+'</b></span><span>📚 <b>'+esc(S.prog)+'</b></span><span>⏱️ Test time: <b>'+Math.floor(used/60)+' min '+(used%60)+' sec</b></span><span class="muted" style="font-size:.9rem">Submitted '+esc(new Date().toLocaleString())+'</span>';
+ $("rScore").textContent=ok;$("rTotal").textContent="/"+DATA.length;
+ $("rFlag").innerHTML=S.auto?'<div class="flag">Auto-submitted: '+esc(S.auto)+'. Warnings received: '+Math.min(S.viol,MAX_WARN)+' / '+MAX_WARN+'.</div>':'<div class="flag '+(S.viol?'':'ok')+'">Submitted by student. Warnings received: '+S.viol+' / '+MAX_WARN+'.</div>';
+ show("resultScreen");}
+document.querySelectorAll(".filters button").forEach(function(b){b.onclick=function(){document.querySelectorAll(".filters button").forEach(function(x){x.setAttribute("aria-pressed",x===b);});
+ document.querySelectorAll(".ri").forEach(function(r){r.classList.toggle("hidden",b.dataset.f!=="all"&&r.dataset.r!==b.dataset.f);});};});
+})();
+</script>
+
+</body>
+</html>
